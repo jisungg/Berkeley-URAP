@@ -6,7 +6,7 @@ A prerequisite assignment for Prof. Matteo Benetton scraping specified variables
 
 This project processes FFIEC CDR Call Reports by extracting key variables from multiple schedules. For each year between 2001 and 2024, the script:
 
-- Reads data files from designated directories following a standardized naming convention.
+- Reads data files[^1] from designated directories following a standardized naming convention.
 - Extracts specified variables from each schedule while retaining each bank's unique identifier (IDRSSD).
 - Merges data from the various schedules on the IDRSSD column to create a consolidated table for that year.
 - Exports the results to an Excel workbook with one sheet per year.
@@ -157,3 +157,5 @@ Result of data from 2001 using the specified variables (Opened in Google Sheets)
 
 - Exisitng `yearly_extracted_data.xlsx` file:
   Pandas automatically writes over the xlsx file, replacing the file and its contents. The existing `yearly_extracted_data.xlsx` file in this repository is relative to the specific data and variables specified [above](#overview) and in the `VARIABLES` variable in `src/urap.py`, respectively.
+
+[^1]: Data files that are downloaded to be physically put into `data` should be and are expected to be in .txt format, or as referenced in the FFIEC website, **Tab Delimited**. Downloading data (`download_data.py`) uses the XBRL (a subset of XML) to transfer information into JSON format.

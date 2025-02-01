@@ -16,7 +16,7 @@ This project processes FFIEC CDR Call Reports by extracting key variables from m
 - **File Structure and Naming Conventions:**  
   The code is designed to work with files organized in the following structure:
 
-  `data/FFIEC CDR Call All Schedules Jun 30 {Year}/FFIEC CDR Call Schedule {Schedule} {Quarter}{Year}.txt`
+  `data/FFIEC CDR Call All Schedules {Quarter} {Year}/FFIEC CDR Call Schedule {Schedule} {Quarter}{Year}.txt`
 
   For example, the file for schedule RCK in 2024 is:
 

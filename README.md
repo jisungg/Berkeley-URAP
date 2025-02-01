@@ -14,11 +14,11 @@ This project processes FFIEC CDR Call Reports by extracting key variables from m
 ### Thought Process
 
 - **File Structure and Naming Conventions:**  
-  The code is designed to work with files organized in the following structure: 
+  The code is designed to work with files organized in the following structure:
 
   `data/FFIEC CDR Call All Schedules Jun 30 {Year}/FFIEC CDR Call Schedule {Schedule} {Quarter}{Year}.txt`
 
-  For example, the file for schedule RCK in 2024 is:  
+  For example, the file for schedule RCK in 2024 is:
 
   `data/FFIEC CDR Call All Schedules Jun 30 2024/FFIEC CDR Call Schedule RCK 06302024.txt`
 
@@ -30,6 +30,19 @@ This project processes FFIEC CDR Call Reports by extracting key variables from m
 
 - **Output to Excel:**  
   The final merged tables for each year are written to an Excel workbook, with each sheet labeled by the corresponding year. This structure facilitates both a consolidated view and year-by-year analysis.
+
+### Downloading CDR Data
+
+The project includes functionality to download CDR data for specified years. This is managed by the `download_data.py` script, where you can adjust the global variable `QUARTER` to specify the desired quarter. The script downloads a quarterly CDR dataset and returns the data as a JSON object.
+
+Due to the nature of the FFIEC data acquisition process, traditional methods—such as using `curl`, `wget`, or even Python-based scraping with `beautifulsoup` are not viable. Instead, the FFIEC provides access via an older SOAP-based web service rather than modern REST APIs. This means that the usual techniques for automating downloads are not applicable.
+
+Note that the download sizes can be significant: a quarterly CDR file can range from 0.6GB to 1GB, while UBPR files may range from 1GB to 4GB per quarter.
+
+### Known Issues
+
+- The FFIEC site’s user interface can be somewhat unreliable. If a download fails, resubmitting your request will often result in a successful download.
+
 
 ## Installation and Setup
 
@@ -52,18 +65,21 @@ cd <repository_directory>
 ```
 
 2. Set Up a Virtual Environment (Optional but Recommended):
+
 ```bash
 python -m venv venv
 source venv/bin/activate   # On Windows use: venv\Scripts\activate
 ```
 
 3. Install Required Packages:
+
 ```bash
 pip install os pandas openpyxl
 ```
 
 4. Directory Structure:
-Ensure the data files are stored in the following directory structure:
+   Ensure the data files are stored in the following directory structure:
+
 ```bash
 ├── src
 │   └── urap.py
@@ -77,23 +93,29 @@ Ensure the data files are stored in the following directory structure:
 ```
 
 ## Data Acquisition
-Due to space constraints and best practices for version control, the data files are not included in this repository. You can bulk download the required call report files directly from the FFIEC website at: 
+
+Due to space constraints and best practices for version control, the data files are not included in this repository. You can bulk download the required call report files directly from the FFIEC website at:
 
 [https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx](https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx)
 
 Dollow the file naming conventions described above when placing the `data` in your local data directory.
 
 ## Running the Script
+
 To execute the script and generate the Excel file:
+
 1. Navigate to the root directory of the project.
 2. Run the script:
+
 ```bash
 python src/urap.py
 ```
-   - If running Python3:
-   ```bash
-   python3 src/urap.py
-   ```
+
+- If running Python3:
+
+```bash
+python3 src/urap.py
+```
 
 After running, you should see a file named `yearly_extracted_data.xlsx` in your project directory. Each sheet in this Excel workbook corresponds to a year, containing the extracted variables for each bank (identified by IDRSSD).
 
@@ -101,15 +123,15 @@ Result of data from 2001 using the specified variables (Opened in Google Sheets)
 ![Result](images/extracted_xlsx_result.png)
 
 ## Additional Notes
+
 - Data Format:
-The script assumes the text files are tab-delimited (`\t`). If the delimiter is different (e.g., a pipe character), adjust the `delimiter` parameter in the `pd.read_csv` call accordingly.
+  The script assumes the text files are tab-delimited (`\t`). If the delimiter is different (e.g., a pipe character), adjust the `delimiter` parameter in the `pd.read_csv` call accordingly.
 
 - Error Handling:
-The script includes error messages for missing files or columns. Review the console output to troubleshoot any issues with the file structure or missing data.
+  The script includes error messages for missing files or columns. Review the console output to troubleshoot any issues with the file structure or missing data.
 
 - Modifications:
-Feel free to adjust the VARIABLES dictionary if additional schedules or variables need to be processed.
+  Feel free to adjust the VARIABLES dictionary if additional schedules or variables need to be processed.
 
 - Documentation:
-Inline comments in the code explain the purpose of each function and key steps in the processing workflow.
-
+  Inline comments in the code explain the purpose of each function and key steps in the processing workflow.

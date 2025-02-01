@@ -49,10 +49,22 @@ Note that the download sizes can be significant: a quarterly CDR file can range 
 ### Prerequisites
 
 - **Python 3.7 or later**
-- The following Python packages:
+- The following Python packages (assuming the default packages aren't installed with Python):
   - `os`
   - `pandas`
   - `openpyxl`
+  - `selenium`
+  - `time`
+  - `xbrl`
+  - `json`
+  - `io`
+  - `zipfile`
+  - `tqdm`
+  - `re`
+  - `xmltodict`
+  - `itertools`
+  - `uuid`
+  - `shutil`
 
 ### Installation Steps
 
@@ -74,8 +86,15 @@ source venv/bin/activate   # On Windows use: venv\Scripts\activate
 3. Install Required Packages:
 
 ```bash
-pip install os pandas openpyxl
+pip install os pandas openpyxl selenium time xbrl json io zipfile tqdm re xmltodict itertools uuid shutil
 ```
+
+- or if running Python3:
+
+```bash
+pip3 install os pandas openpyxl selenium time xbrl json io zipfile tqdm re xmltodict itertools uuid shutil
+```
+
 
 4. Directory Structure:
    Ensure the data files are stored in the following directory structure:

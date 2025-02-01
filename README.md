@@ -135,3 +135,6 @@ Result of data from 2001 using the specified variables (Opened in Google Sheets)
 
 - Documentation:
   Inline comments in the code explain the purpose of each function and key steps in the processing workflow.
+
+- Exisitng `yearly_extracted_data.xlsx` file:
+  Pandas automatically writes over the xlsx file, replacing the file and its contents. The existing `yearly_extracted_data.xlsx` file in this repository is relative to the specific data and variables specified [above](#overview) and in the `VARIABLES` variable in `src/urap.py`, respectively.

@@ -117,7 +117,7 @@ Due to space constraints and best practices for version control, the data files 
 
 [https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx](https://cdr.ffiec.gov/public/PWS/DownloadBulkData.aspx)
 
-Dollow the file naming conventions described above when placing the `data` in your local data directory.
+Follow the file naming conventions described above when placing the `data` in your local data directory.
 
 ## Running the Script
 
@@ -155,7 +155,7 @@ Result of data from 2001 using the specified variables (Opened in Google Sheets)
 - Documentation:
   Inline comments in the code explain the purpose of each function and key steps in the processing workflow.
 
-- Exisitng `yearly_extracted_data.xlsx` file:
+- Existing `yearly_extracted_data.xlsx` file:
   Pandas automatically writes over the xlsx file, replacing the file and its contents. The existing `yearly_extracted_data.xlsx` file in this repository is relative to the specific data and variables specified [above](#overview) and in the `VARIABLES` variable in `src/urap.py`, respectively.
 
 [^1]: Data files that are downloaded to be physically put into `data` should be and are expected to be in .txt format, or as referenced in the FFIEC website, **Tab Delimited**. Downloading data (`download_data.py`) uses the XBRL (a subset of XML) to transfer information into JSON format.
